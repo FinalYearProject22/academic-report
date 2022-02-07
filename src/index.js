@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {App, Navbar} from './App';
+import {App, Navbar} from './components/Navbar/Navbar';
 
 
 ReactDOM.render(
