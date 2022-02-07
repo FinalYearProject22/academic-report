@@ -50,12 +50,12 @@ function Navbar() {
 
 
 
-function App() {
-  return (
-    <div className="App ">
-      <p>Hello World!</p>
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div className="App ">
+//       <p>Hello World!</p>
+//     </div>
+//   );
+// }
 
-export {App, Navbar};
+export { Navbar};
