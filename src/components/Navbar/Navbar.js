@@ -2,7 +2,7 @@ import './Navbar.css';
 
 function Navbar() {
   return (
-    <div className="container-fluid shadow mb-2 mt-2">
+    <div className="container-fluid  mb-2 mt-2">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient rounded-3">
         <div className="container-fluid">
           <a className="navbar-brand ms-3" href="#asfdsf">
@@ -47,15 +47,5 @@ function Navbar() {
   );
 }
 
-
-
-
-// function App() {
-//   return (
-//     <div className="App ">
-//       <p>Hello World!</p>
-//     </div>
-//   );
-// }
 
 export { Navbar};
