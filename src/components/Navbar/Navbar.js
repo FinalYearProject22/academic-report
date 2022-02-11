@@ -2,8 +2,8 @@ import './Navbar.css';
 
 function Navbar() {
   return (
-    <div className="container-fluid shadow mb-2 mt-2">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient rounded-3">
+    <div className="container-fluid mb-2 mt-2">
+      <nav className="navbar shadow navbar-expand-lg navbar-dark bg-dark bg-gradient rounded-3">
         <div className="container-fluid">
           <a className="navbar-brand ms-3" href="#asfdsf">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-kanban" viewBox="0 0 16 16">
