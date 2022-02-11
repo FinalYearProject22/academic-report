@@ -31,7 +31,7 @@ function Login() {
                     <a href="#!">Forgot password?</a>
                   </div>
                   {/* <!-- Submit button --> */}
-                  <button type="submit" class="btn btn-primary btn-lg ">Sign in</button>
+                  <button onClick={signin} type="submit" class="btn btn-primary btn-lg ">Sign in</button>
 
                 </form>
               </div>
@@ -45,7 +45,10 @@ export { Login };
 
 
 var lol;
-function signin(email,password){
+function signin(){
+    console.log(`Hello`);
+    var email="iamrahulsingh0801@gmail.com"
+    var password="Rahul@123"
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
