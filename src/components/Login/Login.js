@@ -1,6 +1,6 @@
 import './Login.css';
 import {firebase,app} from "../../Firebase/firebase";
-import { getAuth, signInWithEmailAndPassword ,sendPasswordResetEmail} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword ,setPersistence,browserSessionPersistence,sendPasswordResetEmail} from "firebase/auth";
 import { getDatabase , ref, child, get} from "firebase/database";
 
 function Login() {
@@ -91,6 +91,8 @@ function signin(){
     var email=document.getElementById("email").value;
     var password=document.getElementById("password").value;
     const auth = getAuth();
+  setPersistence(auth, browserSessionPersistence)
+  .then(() => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         const user = userCredential.user;
@@ -111,7 +113,16 @@ function signin(){
           locModal.className="modal fade";
         });
     });
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
 }
+
+
+
 
 function forgot(e){
   e.preventDefault();
