@@ -34,7 +34,7 @@ function Login() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="loginModalLongTitle">Could not Login to your account</h5>
-                  <button type="button" id="loginmodalclose" className="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" id="loginmodalclose" className="btn-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -50,7 +50,7 @@ function Login() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="forgotModalLongTitle">Password Reset Form</h5>
-                  <button type="button" id="forgotmodalclose" className="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" id="forgotmodalclose" className="btn-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -60,7 +60,9 @@ function Login() {
                       <div className="form-outline mb-4">
                         <input type="email" name="email" id="resetemail" className="form-control form-control-lg" placeholder='Email Address'/>
                       </div>
-                      <button  id="resetsubmitbtn" type="button" onClick={reset} className="btn btn-primary btn-lg ">Request Reset</button>
+                      <div className='container-fluid'>
+                      <button  id="resetsubmitbtn" type="button" onClick={reset} className="btn btn-primary mx-auto btn-lg ">Request Reset</button>
+                      </div>
                     </form>
                 </div>
               </div>
@@ -71,7 +73,7 @@ function Login() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="requestModalLongTitle"> </h5>
-                  <button type="button" id="requestmodalclose" className="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" id="requestmodalclose" className="btn-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -80,14 +82,33 @@ function Login() {
               </div>
             </div>
           </div>
+          <div id="loadingscreen"  className="invisible d-flex justify-content-center align-items-center container-fluid  h-100 position-absolute top-0 start-0 bg-light">
+            <div id="spinnercontainer" className='container d-flex justify-content-center'>
+              <div id="loadingscreenspinner" className="d-block spinner-border spinner-border-lg"  role="status"></div>
+              <div className='d-block ms-3 d-flex text-center justify-content-center align-items-center'>
+                <span id="loadertext" className='h4'><em>Fetching Data from DataBase....</em></span>
+              </div>
+            </div>
+          </div>
         </section>
     );
   }
   
-export { Login };
+function togglespinner(ans){
+  if(ans===true){
+  document.getElementById("submitbtn").innerHTML=`
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  `+document.getElementById("submitbtn").innerHTML;
+  }else{
+    document.getElementById("submitbtn").innerHTML=`Sign in`
+  }
+}
 
 
 function signin(){
+    togglespinner(true);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     var email=document.getElementById("email").value;
     var password=document.getElementById("password").value;
     const auth = getAuth();
@@ -97,8 +118,13 @@ function signin(){
     .then((userCredential) => {
         const user = userCredential.user;
         console.log(user.uid);
+        togglespinner(false);
+        document.getElementById("loadingscreen").classList.remove("invisible");
+        document.body.style.overflow = 'hidden';
+        role(user.uid);
     })
     .catch((error) => {
+        togglespinner(false);
         let btnclose = document.getElementById('loginmodalclose');
         let locModal = document.getElementById('loginModal');
         locModal.style.display = "block";
@@ -136,6 +162,8 @@ function forgot(e){
     locModal.className="modal fade";
   });
 }
+
+
 
 function reset(){
   var email=document.getElementById("resetemail").value;
@@ -176,15 +204,24 @@ function reset(){
 
 }
 
+let db=ref(getDatabase(app));
 
-// const db=ref(getDatabase(app));
-// get(child(db, `students/${lol}`)).then((snapshot) => {
-//   if (snapshot.exists()) {
-//     console.log(snapshot.val());
-//   } else {
-//     console.log("No data available");
-//   }
-// }).catch((error) => {
-//   console.error(error);
-// });
+function role(uid){
+  get(child(db, `users/${uid}/role`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+      document.getElementById("loadertext").innerHTML=`<em>Preparing your Page...</em>`;
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+}
 
+function noScroll() {
+  window.scrollTo(0, 0);
+}
+
+
+export { Login };

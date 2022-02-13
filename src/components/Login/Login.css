@@ -13,4 +13,29 @@
     height: 100%;
   }
 }
-
+#resetsubmitbtn{
+  width: 15rem;
+  display: block;
+}
+.modal{
+  animation: fadeInAnimation 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation{
+  0%{
+    opacity: 0;;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+#loadingscreen{
+  opacity: 0.75;
+}
+.spinner-border-lg{
+  width: 5rem; height: 5rem;
+}
+#spinnercontainer{
+margin: 0 auto;
+}
