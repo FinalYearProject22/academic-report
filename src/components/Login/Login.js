@@ -34,7 +34,7 @@ function Login() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="loginModalLongTitle">Could not Login to your account</h5>
-                  <button type="button" id="loginmodalclose" className="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" id="loginmodalclose" className="btn-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -50,7 +50,7 @@ function Login() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="forgotModalLongTitle">Password Reset Form</h5>
-                  <button type="button" id="forgotmodalclose" className="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" id="forgotmodalclose" className="btn-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -60,7 +60,9 @@ function Login() {
                       <div className="form-outline mb-4">
                         <input type="email" name="email" id="resetemail" className="form-control form-control-lg" placeholder='Email Address'/>
                       </div>
-                      <button  id="resetsubmitbtn" type="button" onClick={reset} className="btn btn-primary btn-lg ">Request Reset</button>
+                      <div className='container-fluid'>
+                      <button  id="resetsubmitbtn" type="button" onClick={reset} className="btn btn-primary mx-auto btn-lg ">Request Reset</button>
+                      </div>
                     </form>
                 </div>
               </div>
@@ -71,7 +73,7 @@ function Login() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="requestModalLongTitle"> </h5>
-                  <button type="button" id="requestmodalclose" className="close" data-dismiss="modal" aria-label="Close">
+                  <button type="button" id="requestmodalclose" className="btn-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -84,7 +86,7 @@ function Login() {
     );
   }
   
-export { Login };
+
 
 
 function signin(){
@@ -137,6 +139,8 @@ function forgot(e){
   });
 }
 
+
+
 function reset(){
   var email=document.getElementById("resetemail").value;
   let locModal = document.getElementById('forgotModal');
@@ -188,3 +192,4 @@ function reset(){
 //   console.error(error);
 // });
 
+export { Login };
