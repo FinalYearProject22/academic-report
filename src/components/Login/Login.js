@@ -82,14 +82,33 @@ function Login() {
               </div>
             </div>
           </div>
+          <div id="loadingscreen" className="invisible d-flex justify-content-center align-items-center container-fluid  h-100 position-absolute top-0 start-0 bg-light">
+            <div id="spinnercontainer" className='container d-flex justify-content-center'>
+              <div id="loadingscreenspinner" className="d-block spinner-border spinner-border-lg"  role="status"></div>
+              <div className='d-block ms-3 d-flex text-center justify-content-center align-items-center'>
+                <span id="loadertext" className='h4'><em>Fetching Data from DataBase....</em></span>
+              </div>
+            </div>
+          </div>
         </section>
     );
   }
   
-
+function togglespinner(ans){
+  if(ans===true){
+  document.getElementById("submitbtn").innerHTML=`
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  `+document.getElementById("submitbtn").innerHTML;
+  }else{
+    document.getElementById("submitbtn").innerHTML=`Sign in`
+  }
+}
 
 
 function signin(){
+    togglespinner(true);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     var email=document.getElementById("email").value;
     var password=document.getElementById("password").value;
     const auth = getAuth();
@@ -99,8 +118,13 @@ function signin(){
     .then((userCredential) => {
         const user = userCredential.user;
         console.log(user.uid);
+        togglespinner(false);
+        document.getElementById("loadingscreen").classList.remove("invisible");
+        // document.getElementById("loadingscreen").classList.add("visible");
+        role(user.uid);
     })
     .catch((error) => {
+        togglespinner(false);
         let btnclose = document.getElementById('loginmodalclose');
         let locModal = document.getElementById('loginModal');
         locModal.style.display = "block";
@@ -181,15 +205,21 @@ function reset(){
 }
 
 
-// const db=ref(getDatabase(app));
-// get(child(db, `students/${lol}`)).then((snapshot) => {
-//   if (snapshot.exists()) {
-//     console.log(snapshot.val());
-//   } else {
-//     console.log("No data available");
-//   }
-// }).catch((error) => {
-//   console.error(error);
-// });
+
+function role(uid){
+  let db=ref(getDatabase(app));
+  get(child(db, `users/${uid}/role`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+      document.getElementById("loadertext").innerHTML=`Preparing your Page...`;
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+}
+
+
 
 export { Login };
