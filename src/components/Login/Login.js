@@ -1,5 +1,5 @@
 import './Login.css';
-import {firebase,app} from "../../Firebase/firebase";
+import {app} from "../../Firebase/firebase";
 import { getAuth, signInWithEmailAndPassword ,setPersistence,browserSessionPersistence,sendPasswordResetEmail} from "firebase/auth";
 import { getDatabase , ref, child, get} from "firebase/database";
 
@@ -141,8 +141,6 @@ function signin(){
     });
   })
   .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
   });
 
 }
@@ -217,10 +215,6 @@ function role(uid){
   }).catch((error) => {
     console.error(error);
   });
-}
-
-function noScroll() {
-  window.scrollTo(0, 0);
 }
 
 
