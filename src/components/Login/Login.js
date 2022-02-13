@@ -82,7 +82,7 @@ function Login() {
               </div>
             </div>
           </div>
-          <div id="loadingscreen" className="invisible d-flex justify-content-center align-items-center container-fluid  h-100 position-absolute top-0 start-0 bg-light">
+          <div id="loadingscreen"  className="invisible d-flex justify-content-center align-items-center container-fluid  h-100 position-absolute top-0 start-0 bg-light">
             <div id="spinnercontainer" className='container d-flex justify-content-center'>
               <div id="loadingscreenspinner" className="d-block spinner-border spinner-border-lg"  role="status"></div>
               <div className='d-block ms-3 d-flex text-center justify-content-center align-items-center'>
@@ -120,7 +120,7 @@ function signin(){
         console.log(user.uid);
         togglespinner(false);
         document.getElementById("loadingscreen").classList.remove("invisible");
-        // document.getElementById("loadingscreen").classList.add("visible");
+        document.body.style.overflow = 'hidden';
         role(user.uid);
     })
     .catch((error) => {
@@ -204,14 +204,13 @@ function reset(){
 
 }
 
-
+let db=ref(getDatabase(app));
 
 function role(uid){
-  let db=ref(getDatabase(app));
   get(child(db, `users/${uid}/role`)).then((snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
-      document.getElementById("loadertext").innerHTML=`Preparing your Page...`;
+      document.getElementById("loadertext").innerHTML=`<em>Preparing your Page...</em>`;
     } else {
       console.log("No data available");
     }
@@ -220,6 +219,9 @@ function role(uid){
   });
 }
 
+function noScroll() {
+  window.scrollTo(0, 0);
+}
 
 
 export { Login };
