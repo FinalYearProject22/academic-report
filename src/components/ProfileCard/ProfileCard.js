@@ -30,7 +30,7 @@ function ProfileCard(){
     return (
         <>
             <section className='container-fluid  mb-2 mt-4'>
-            <div className=" rounded-3  bg-success p-2 text-white bg-opacity-75 bg-gradient  mx-3 py-3">
+            <div className=" rounded-3  bg-success text-white bg-opacity-75 bg-gradient  mx-3 py-3">
                 <div className='row gy-4'>
                     <div className='col-md-10'>
                         <div className='row mb-1 ms-4'><span><em>Name:</em> &nbsp;&nbsp;Rahul Kumar SIngh</span></div>
