@@ -19,6 +19,7 @@ function ProfileCard(){
                 role(user.uid,user.email);
             }
             else{
+                deactivateloadingscreen();
                 navigate('/');
             }
          });
@@ -77,4 +78,4 @@ function role(uid,email){
 }
 
 
-export { ProfileCard };
+export { ProfileCard,};
