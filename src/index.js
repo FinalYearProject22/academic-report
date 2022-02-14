@@ -4,13 +4,17 @@ import './index.css';
 import { Navbar} from './components/Navbar/Navbar';
 import { Footer } from './components/Footer/Footer';
 import {Login } from './components/Login/Login';
+import { ProfileCard } from './components/ProfileCard/ProfileCard';
 import { BrowserRouter , Route , Routes} from 'react-router-dom';
+import { Loadingscreen } from './components/Loadingscreen/Loadingscreen';
 
 ReactDOM.render(
   <BrowserRouter basename='academic-report'>
+    <Loadingscreen/>
     <Navbar/>
       <Routes>
         <Route exact path="/" element={<Login/>} />
+        <Route exact path="/Profile" element={<ProfileCard/>} />
       </Routes>
     <Footer/>
   </BrowserRouter>
