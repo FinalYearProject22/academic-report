@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import { getDatabase , ref, child, get} from "firebase/database";
 import {app} from "../../Firebase/firebase";
 import { activateloadingscreen, deactivateloadingscreen } from '../Loadingscreen/Loadingscreen';
-import { getAuth, onAuthStateChanged} from "firebase/auth";
+import { getAuth, onAuthStateChanged,signOut} from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+
 
 function ProfileCard(){
 
@@ -16,6 +17,7 @@ function ProfileCard(){
          onAuthStateChanged(auth, (user)=>{
             if(user){
                 deactivateloadingscreen();
+                // console.log("2");
                 role(user.uid,user.email);
             }
             else{
@@ -26,11 +28,24 @@ function ProfileCard(){
     },
     [navigate])
 
+    function logoutuser(){
+        activateloadingscreen(`Logging you Out....`);
+        const auth = getAuth();
+        signOut(auth).then(() => {
+        // Sign-out successful.
+        deactivateloadingscreen();
+        navigate('/');
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
+
 
     return (
-        <>
+        <> 
+         {/* {console.log("1")} */}
             <section className='container-fluid  mb-2 mt-4'>
-            <div className=" rounded-3  bg-success text-white bg-opacity-75 bg-gradient  mx-3 py-3">
+            <div className=" rounded-3  bg-primary text-white bg-gradient  mx-5 py-3">
                 <div className='row gy-4'>
                     <div className='col-md-10'>
                         <div className='row mb-1 ms-4'><span><em>Name:</em> &nbsp;&nbsp;<span id="user-name"></span></span></div>
@@ -40,7 +55,7 @@ function ProfileCard(){
                         <div className='row mb-1 ms-4'><span><em>Email:</em> &nbsp;&nbsp;<span id="user-email"></span></span></div>
                     </div>
                     <span className='col-md-2 d-flex justify-content-center align-items-center'>
-                        <button className='btn btn-danger'>
+                        <button onClick={logoutuser}className='btn btn-danger btn-lg'>
                             Logout
                         </button>
                     </span>
@@ -54,6 +69,7 @@ function ProfileCard(){
 
 let db=ref(getDatabase(app));
 function role(uid,email){
+    // console.log("3");
     activateloadingscreen(`Geting user information...`);
     get(child(db, `users/${uid}`)).then((snapshot) => {
         if (snapshot.exists()) {
@@ -76,6 +92,8 @@ function role(uid,email){
         console.error(error);
     });
 }
+
+
 
 
 export { ProfileCard,};
