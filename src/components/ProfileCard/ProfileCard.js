@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import { getDatabase , ref, child, get} from "firebase/database";
 import {app} from "../../Firebase/firebase";
 import { activateloadingscreen, deactivateloadingscreen } from '../Loadingscreen/Loadingscreen';
-import { getAuth, onAuthStateChanged} from "firebase/auth";
+import { getAuth, onAuthStateChanged,signOut} from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+
 
 function ProfileCard(){
 
@@ -27,6 +28,18 @@ function ProfileCard(){
     },
     [navigate])
 
+    function logoutuser(){
+        activateloadingscreen(`Logging you Out....`);
+        const auth = getAuth();
+        signOut(auth).then(() => {
+        // Sign-out successful.
+        deactivateloadingscreen();
+        navigate('/');
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
+
 
     return (
         <> 
@@ -42,7 +55,7 @@ function ProfileCard(){
                         <div className='row mb-1 ms-4'><span><em>Email:</em> &nbsp;&nbsp;<span id="user-email"></span></span></div>
                     </div>
                     <span className='col-md-2 d-flex justify-content-center align-items-center'>
-                        <button className='btn btn-danger'>
+                        <button onClick={logoutuser}className='btn btn-danger'>
                             Logout
                         </button>
                     </span>
@@ -79,6 +92,8 @@ function role(uid,email){
         console.error(error);
     });
 }
+
+
 
 
 export { ProfileCard,};
