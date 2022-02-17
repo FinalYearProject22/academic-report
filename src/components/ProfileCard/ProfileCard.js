@@ -16,6 +16,7 @@ function ProfileCard(){
          onAuthStateChanged(auth, (user)=>{
             if(user){
                 deactivateloadingscreen();
+                // console.log("2");
                 role(user.uid,user.email);
             }
             else{
@@ -28,7 +29,8 @@ function ProfileCard(){
 
 
     return (
-        <>
+        <> 
+         {/* {console.log("1")} */}
             <section className='container-fluid  mb-2 mt-4'>
             <div className=" rounded-3  bg-success text-white bg-opacity-75 bg-gradient  mx-3 py-3">
                 <div className='row gy-4'>
@@ -54,6 +56,7 @@ function ProfileCard(){
 
 let db=ref(getDatabase(app));
 function role(uid,email){
+    // console.log("3");
     activateloadingscreen(`Geting user information...`);
     get(child(db, `users/${uid}`)).then((snapshot) => {
         if (snapshot.exists()) {
