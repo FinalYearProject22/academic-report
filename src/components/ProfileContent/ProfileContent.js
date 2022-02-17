@@ -3,7 +3,7 @@ import { getDatabase , ref, child, get} from "firebase/database";
 import {app} from "../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
-import { AdminContent } from "../AdminContent/AdminContent"
+import { AdminContentProfile } from "../AdminContent/AdminContent"
 import { StudentContent } from "../StudentContent/StudentContent"
 import { TeacherContent } from "../TeacherContent/TeacherContent";
 
@@ -34,7 +34,7 @@ function ProfileContent(){
     if(role===`admin`)
         return(
             <>
-                <AdminContent/>
+                <AdminContentProfile/>
             </>
         );
     else if(role===`student`)

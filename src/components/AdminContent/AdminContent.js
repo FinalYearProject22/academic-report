@@ -1,6 +1,6 @@
 
 
-function AdminContent(){
+function AdminContentProfile(){
     return(
         <>
             <div className="container-fluid my-5">
@@ -78,4 +78,4 @@ function AdminContent(){
     );
 }
 
-export { AdminContent };
+export { AdminContentProfile };
