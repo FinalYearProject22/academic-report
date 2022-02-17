@@ -45,7 +45,7 @@ function ProfileCard(){
         <> 
          {/* {console.log("1")} */}
             <section className='container-fluid  mb-2 mt-4'>
-            <div className=" rounded-3  bg-success text-white bg-opacity-75 bg-gradient  mx-3 py-3">
+            <div className=" rounded-3  bg-primary text-white bg-gradient  mx-5 py-3">
                 <div className='row gy-4'>
                     <div className='col-md-10'>
                         <div className='row mb-1 ms-4'><span><em>Name:</em> &nbsp;&nbsp;<span id="user-name"></span></span></div>
@@ -55,7 +55,7 @@ function ProfileCard(){
                         <div className='row mb-1 ms-4'><span><em>Email:</em> &nbsp;&nbsp;<span id="user-email"></span></span></div>
                     </div>
                     <span className='col-md-2 d-flex justify-content-center align-items-center'>
-                        <button onClick={logoutuser}className='btn btn-danger'>
+                        <button onClick={logoutuser}className='btn btn-danger btn-lg'>
                             Logout
                         </button>
                     </span>

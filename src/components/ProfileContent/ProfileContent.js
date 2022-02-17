@@ -3,7 +3,7 @@ import { getDatabase , ref, child, get} from "firebase/database";
 import {app} from "../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
-import { AdminContentProfile } from "../AdminContent/AdminContent"
+import { AdminContentProfile } from "../AdminContentProfile/AdminContentProfile"
 import { StudentContent } from "../StudentContent/StudentContent"
 import { TeacherContent } from "../TeacherContent/TeacherContent";
 
