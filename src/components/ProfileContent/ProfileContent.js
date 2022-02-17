@@ -4,8 +4,8 @@ import {app} from "../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
 import { AdminContentProfile } from "../AdminContentProfile/AdminContentProfile"
-import { StudentContent } from "../StudentContent/StudentContent"
-import { TeacherContent } from "../TeacherContent/TeacherContent";
+import { StudentContentProfile } from "../StudentContentProfile/StudentContentProfile"
+import { TeacherContentProfile } from "../TeacherContentProfile/TeacherContentProfile";
 
 function ProfileContent(){
 
@@ -40,13 +40,13 @@ function ProfileContent(){
     else if(role===`student`)
         return(
             <>
-                <StudentContent/>
+                <StudentContentProfile/>
             </>
         );
     else if(role===`teacher`)
         return(
             <>
-                <TeacherContent/>
+                <TeacherContentProfile/>
             </>
         ); 
     else
