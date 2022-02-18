@@ -10,13 +10,13 @@ function AdminContentProfile(){
                             <img className="card-img rounded-3 " src="https://firebasestorage.googleapis.com/v0/b/finalyearproject22-6db2e.appspot.com/o/Assets%2FAdminbg1.jpg?alt=media&token=57b5cd1a-0764-4b38-9a85-b4d4ba31b859" alt="Card"></img>
                             <div className="card-img-overlay ">
                                 <h5 className="card-title mx-2 h1">Manage Courses</h5>
-                                <p className="card-text mx-2 my-3">
+                                <div className="card-text mx-2 my-3">
                                     <ul>
                                         <li className="h5">Add New Course</li>
                                         <li className="h5">Show List of existing Courses</li>
                                         <li className="h5">Delete Course</li>
                                     </ul>                             
-                                 </p>
+                                 </div>
                             </div>
                         </div>
                         <div className="card border-0 col-lg-4 text-white">
@@ -31,6 +31,7 @@ function AdminContentProfile(){
                                     </ul>                             
                                  </div>
                             </div>
+                            <a href="https://finalyearproject22.github.io/academic-report/" className="stretched-link"></a>
                         </div>
                         <div className="card border-0 col-lg-4 text-white">
                             <img className="card-img img-fluid rounded-3 " src="https://firebasestorage.googleapis.com/v0/b/finalyearproject22-6db2e.appspot.com/o/Assets%2FAdminbg3.jpg?alt=media&token=9896e7ec-0a9c-430b-89e5-46f50c7aab8f" alt="Card"></img>
