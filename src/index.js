@@ -8,14 +8,24 @@ import { ProfileCard } from './components/ProfileCard/ProfileCard';
 import { HashRouter, Route , Routes} from 'react-router-dom';
 import { Loadingscreen } from './components/Loadingscreen/Loadingscreen';
 import { ProfileContent } from './components/ProfileContent/ProfileContent'
+import { ManageCourses } from './components/AdminWorkPlace/ManageCourses/ManageCourses';
+import { ManageBatches } from './components/AdminWorkPlace/ManageBatches/ManageBatches';
+import { ManageStudents } from './components/AdminWorkPlace/ManageStudents/ManageStudents';
+import { ManageTeachers } from './components/AdminWorkPlace/ManageTeachers/ManageTeachers';
+import { ManageAssesment } from './components/AdminWorkPlace/ManageAssesment/ManageAssesment';
 
 ReactDOM.render(
   <HashRouter >
     <Loadingscreen/>
     <Navbar/>
       <Routes basename='academic-report'>
-        <Route exact path="/" element={<Login/>} />
-        <Route exact path="/Profile" element={<><ProfileCard/> <ProfileContent/></>} />
+        <Route path="/" element={<Login/>} />
+        <Route path="Profile" element={<><ProfileCard/> <ProfileContent/></>} />
+        <Route path="Profile/ManageCourses" element={<><ProfileCard/> <ManageCourses/></>} />
+        <Route path="Profile/ManageBatches" element={<><ProfileCard/> <ManageBatches/></>} />
+        <Route path="Profile/ManageStudents" element={<><ProfileCard/> <ManageStudents/></>} />
+        <Route path="Profile/ManageTeachers" element={<><ProfileCard/> <ManageTeachers/></>} />
+        <Route path="Profile/ManageAssesment" element={<><ProfileCard/> <ManageAssesment/></>} />
       </Routes>
     <Footer/>
   </HashRouter>

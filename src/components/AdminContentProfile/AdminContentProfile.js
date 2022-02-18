@@ -1,4 +1,6 @@
 import './AdminContentProfile.css';
+import { Link } from 'react-router-dom';
+
 
 function AdminContentProfile(){
     return(
@@ -70,6 +72,8 @@ function AdminContentProfile(){
                                     </ul>                             
                                  </div>
                             </div>
+                            <Link  to="ManageAssesment" className="stretched-link"></Link>
+
                         </div>
                     </div>
                 </div>

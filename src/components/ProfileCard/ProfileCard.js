@@ -20,7 +20,7 @@ function ProfileCard(){
             }
             else{
                 deactivateloadingscreen();
-                navigate('/');
+                navigate('/',{replace:true});
             }
          });
     },
