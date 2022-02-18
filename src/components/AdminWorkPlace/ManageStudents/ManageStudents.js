@@ -1,18 +1,17 @@
-
 import { getAuth,onAuthStateChanged} from "firebase/auth";
 import { getDatabase , ref, child, get} from "firebase/database";
-import {app} from "../../Firebase/firebase";
+import {app} from "../../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
-import { AdminContentProfile } from "../AdminContentProfile/AdminContentProfile"
-import { StudentContentProfile } from "../StudentContentProfile/StudentContentProfile"
-import { TeacherContentProfile } from "../TeacherContentProfile/TeacherContentProfile";
+import { useNavigate } from 'react-router-dom';
 
 
 
-function ProfileContent(){
 
 
+function ManageStudents(){
+
+    let navigate=useNavigate();
     const [role, setRole] = useState(undefined);
     useEffect(() => {
         const auth = getAuth();
@@ -23,6 +22,7 @@ function ProfileContent(){
             get(child(db, `users/${uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     setRole(snapshot.val().role);
+                    console.log(snapshot.val().role);
                 } else {
                 console.log("No data available");
                 }
@@ -35,30 +35,20 @@ function ProfileContent(){
         });
     },
     []);
+
     if(role===`admin`)
-        return(
-            <>
-                <AdminContentProfile/>
-            </>
-        );
-    else if(role===`student`)
-        return(
-            <>
-                <StudentContentProfile/>
-            </>
-        );
-    else if(role===`teacher`)
-        return(
-            <>
-                <TeacherContentProfile/>
-            </>
-        ); 
+    return(
+        <>
+            Hello
+        </>
+    );
+    else if(role===`student` || role===`teacher`)
+        navigate('/',{replace:true});
     else
-        return(
-            <>
-            </>
-        );
+    return(
+        <>
+        </>
+    );
 }
 
-
-export { ProfileContent };
+export { ManageStudents };

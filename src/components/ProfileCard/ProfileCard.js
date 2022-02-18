@@ -1,4 +1,4 @@
-
+import './ProfileCard.css'
 import React, { useEffect } from 'react'
 import { getDatabase , ref, child, get} from "firebase/database";
 import {app} from "../../Firebase/firebase";
@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 function ProfileCard(){
-
-
     let navigate=useNavigate();
     useEffect(() => {
          activateloadingscreen(`Fetching your Profile...`); 
@@ -22,7 +20,7 @@ function ProfileCard(){
             }
             else{
                 deactivateloadingscreen();
-                navigate('/');
+                navigate('/',{replace:true});
             }
          });
     },
@@ -45,14 +43,14 @@ function ProfileCard(){
         <> 
          {/* {console.log("1")} */}
             <section className='container-fluid  mb-2 mt-4'>
-            <div className=" rounded-3  bg-primary text-white bg-gradient  mx-5 py-3">
+            <div id="ProfileCard" className=" rounded-3 text-danger h6  mx-3 py-3">
                 <div className='row gy-4'>
                     <div className='col-md-10'>
-                        <div className='row mb-1 ms-4'><span><em>Name:</em> &nbsp;&nbsp;<span id="user-name"></span></span></div>
-                        <div className='row mb-1 ms-4'><span><em>Department:</em> &nbsp;&nbsp;<span id="user-dep"></span></span></div>
-                        <div className='row mb-1 ms-4'><span><em>Role:</em> &nbsp;&nbsp;<span id="user-role"></span></span></div>
-                        <div className='row mb-1 ms-4'><span><em>Id:</em> &nbsp;&nbsp;<span id="user-id"></span></span></div>
-                        <div className='row mb-1 ms-4'><span><em>Email:</em> &nbsp;&nbsp;<span id="user-email"></span></span></div>
+                        <div className='row mb-1 ms-3'><span><em>Name:</em> &nbsp;&nbsp;<span id="user-name"></span></span></div>
+                        <div className='row mb-1 ms-3'><span><em>Department:</em> &nbsp;&nbsp;<span id="user-dep"></span></span></div>
+                        <div className='row mb-1 ms-3'><span><em>Role:</em> &nbsp;&nbsp;<span id="user-role"></span></span></div>
+                        <div className='row mb-1 ms-3'><span><em>Id:</em> &nbsp;&nbsp;<span id="user-id"></span></span></div>
+                        <div className='row mb-1 ms-3'><span><em>Email:</em> &nbsp;&nbsp;<span id="user-email"></span></span></div>
                     </div>
                     <span className='col-md-2 d-flex justify-content-center align-items-center'>
                         <button onClick={logoutuser}className='btn btn-danger btn-lg'>
