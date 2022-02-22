@@ -1,3 +1,4 @@
+import './Loadingscreen.css'
 
 function Loadingscreen(){
 
