@@ -72,7 +72,7 @@ function ManageAssesment(){
                 <div className="accordion accordion-flush" id="accordionFlushExample">
                     <div className="accordion-item mb-5">
                         <h2 className="accordion-header" id="flush-headingOne">
-                            <button className="accordion-button rounded-3 collapsed text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            <button id="manageca"className="accordion-button rounded-3 collapsed text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                 Manage CA
                             </button>
                         </h2>
@@ -110,7 +110,7 @@ function ManageAssesment(){
                     </div>
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="flush-headingTwo">
-                        <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <button id="managepa" className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                             Manage PA
                         </button>
                         </h2>
