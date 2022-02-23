@@ -33,7 +33,6 @@ function AdminContentProfile(){
                                     </ul>                             
                                  </div>
                             </div>
-                            <a href="https://finalyearproject22.github.io/academic-report/" className="stretched-link"></a>
                         </div>
                         <div className="card border-0 col-lg-4 text-white">
                             <img className="card-img img-fluid rounded-3 " src="https://firebasestorage.googleapis.com/v0/b/finalyearproject22-6db2e.appspot.com/o/Assets%2FAdminbg3.jpg?alt=media&token=9896e7ec-0a9c-430b-89e5-46f50c7aab8f" alt="Card"></img>
@@ -48,6 +47,7 @@ function AdminContentProfile(){
                                     </ul>                             
                                  </div>
                             </div>
+                            <Link  to="ManageStudents" className="stretched-link"></Link>
                         </div>
                         <div className="card border-0 col-lg-4 text-white">
                             <img className="card-img img-fluid rounded-3 " src="https://firebasestorage.googleapis.com/v0/b/finalyearproject22-6db2e.appspot.com/o/Assets%2FAdminbg4.jpg?alt=media&token=4b90db29-33a9-4998-8368-f9a4c5ddc8ae" alt="Card"></img>
