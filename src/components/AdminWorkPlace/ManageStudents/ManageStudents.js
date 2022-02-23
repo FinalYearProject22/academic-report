@@ -57,33 +57,7 @@ function ManageStudents(){
                         </h2>
                         <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div className="accordion-body">
-                                <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="ca" id="ca1"></input>
-                                    <label className="form-check-label" htmlFor="ca1">
-                                     Start Continuous Assessment 1
-                                    </label>
-                                </div>
-                                <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="ca" id="ca2" ></input>
-                                    <label className="form-check-label" htmlFor="ca2">
-                                        Start Continuous Assessment 2
-                                    </label>
-                                </div>
-                                <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="ca" id="ca3" ></input>
-                                    <label className="form-check-label" htmlFor="ca3">
-                                        Start Continuous Assessment 3
-                                    </label>
-                                </div>
-                                <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="ca" id="ca4" ></input>
-                                    <label className="form-check-label" htmlFor="ca4">
-                                        Start Continuous Assessment 4
-                                    </label>
-                                </div>
-                                <div className='container-fluid mt-4'>
-                                    <button   type="button"  className="btn btn-primary btn-lg ">Submit</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -94,22 +68,8 @@ function ManageStudents(){
                         </button>
                         </h2>
                         <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                        <div className="accordion-body">
-                            <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="pa" id="pa1"></input>
-                                    <label className="form-check-label" htmlFor="pa1">
-                                     Start Practical Continuous Assessment 1
-                                    </label>
-                                </div>
-                                <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="pa" id="pa2" ></input>
-                                    <label className="form-check-label" htmlFor="pa2">
-                                        Start Practical Continuous Assessment 2
-                                    </label>
-                                </div>
-                                <div className='container mt-4'>
-                                    <button   type="button"   className="btn btn-primary btn-lg">Submit</button>
-                                </div>
+                            <div className="accordion-body">
+
                             </div>
                         </div>
                     </div>
@@ -120,22 +80,7 @@ function ManageStudents(){
                         </button>
                         </h2>
                         <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                        <div className="accordion-body">
-                            <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="pa" id="pa1"></input>
-                                    <label className="form-check-label" htmlFor="pa1">
-                                     Start Practical Continuous Assessment 1
-                                    </label>
-                                </div>
-                                <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="pa" id="pa2" ></input>
-                                    <label className="form-check-label" htmlFor="pa2">
-                                        Start Practical Continuous Assessment 2
-                                    </label>
-                                </div>
-                                <div className='container mt-4'>
-                                    <button   type="button"   className="btn btn-primary btn-lg">Submit</button>
-                                </div>
+                            <div className="accordion-body">
                             </div>
                         </div>
                     </div>
@@ -146,22 +91,8 @@ function ManageStudents(){
                         </button>
                         </h2>
                         <div id="flush-collapsefour" className="accordion-collapse collapse" aria-labelledby="flush-headingfour" data-bs-parent="#accordionFlushExample">
-                        <div className="accordion-body">
-                            <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="pa" id="pa1"></input>
-                                    <label className="form-check-label" htmlFor="pa1">
-                                     Start Practical Continuous Assessment 1
-                                    </label>
-                                </div>
-                                <div className="form-check my-2">
-                                    <input className="form-check-input" type="radio" name="pa" id="pa2" ></input>
-                                    <label className="form-check-label" htmlFor="pa2">
-                                        Start Practical Continuous Assessment 2
-                                    </label>
-                                </div>
-                                <div className='container mt-4'>
-                                    <button   type="button"   className="btn btn-primary btn-lg">Submit</button>
-                                </div>
+                            <div className="accordion-body">
+
                             </div>
                         </div>
                     </div>
