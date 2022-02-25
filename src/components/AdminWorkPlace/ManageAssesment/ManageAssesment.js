@@ -102,7 +102,7 @@ function ManageAssesment(){
                                         Start Continuous Assessment 4
                                     </label>
                                 </div>
-                                <div className='container-fluid mt-4'>
+                                <div className='container-fluid text-center mt-4'>
                                     <button   type="button" onClick={() =>submitcapa(0)} className="btn btn-primary btn-lg ">Submit</button>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ function ManageAssesment(){
                                         Start Practical Continuous Assessment 2
                                     </label>
                                 </div>
-                                <div className='container mt-4'>
+                                <div className='container text-center mt-4'>
                                     <button   type="button"  onClick={() =>submitcapa(1)} className="btn btn-primary btn-lg">Submit</button>
                                 </div>
                             </div>
