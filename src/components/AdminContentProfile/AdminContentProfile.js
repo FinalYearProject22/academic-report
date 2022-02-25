@@ -15,11 +15,12 @@ function AdminContentProfile(){
                                 <div className="card-text mx-2 my-3">
                                     <ul>
                                         <li className="h5">Add New Course</li>
-                                        <li className="h5">Show List of existing Courses</li>
+                                        <li className="h5">Modify Courses</li>
                                         <li className="h5">Delete Course</li>
                                     </ul>                             
                                  </div>
                             </div>
+                            <Link  to="ManageCourses" className="stretched-link"></Link>
                         </div>
                         <div className="card border-0 col-lg-4 text-white">
                             <img className="card-img img-fluid rounded-3 " src="https://firebasestorage.googleapis.com/v0/b/finalyearproject22-6db2e.appspot.com/o/Assets%2FAdminbg2.jpg?alt=media&token=852e62c5-2c6b-44a5-bb58-208f57065307" alt="Card"></img>
