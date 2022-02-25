@@ -13,11 +13,13 @@ import { ManageBatches } from './components/AdminWorkPlace/ManageBatches/ManageB
 import { ManageStudents } from './components/AdminWorkPlace/ManageStudents/ManageStudents';
 import { ManageTeachers } from './components/AdminWorkPlace/ManageTeachers/ManageTeachers';
 import { ManageAssesment } from './components/AdminWorkPlace/ManageAssesment/ManageAssesment';
+import { MainModal } from './components/MainModal/MainModal';
 
 ReactDOM.render(
   <HashRouter >
     <Loadingscreen/>
     <Navbar/>
+    <MainModal/>
       <Routes basename='academic-report'>
         <Route path="/" element={<Login/>} />
         <Route path="Profile" element={<><ProfileCard/> <ProfileContent/></>} />
