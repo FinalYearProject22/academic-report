@@ -2,3 +2,6 @@
 #loadingscreen{
     z-index: 3;
 }
+#loadingscreen{
+    opacity: 0.75;
+  }

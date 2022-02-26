@@ -1,5 +1,5 @@
 import { getAuth,onAuthStateChanged} from "firebase/auth";
-import { getDatabase , ref , child, get, set,onValue} from "firebase/database";
+import { getDatabase , ref , child, get, set,onValue, remove} from "firebase/database";
 import {app} from "../../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
@@ -22,7 +22,6 @@ function ManageCourses(){
             get(child(db, `users/${uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     setRole(snapshot.val().role);
-                    console.log(snapshot.val().role);
                     
                 } else {
                 console.log("No data available");
@@ -122,7 +121,7 @@ function ManageCourses(){
                         </h2>
                         <div id="ModifyCoursesBody" className="accordion-collapse collapse" aria-labelledby="ModifyCoursesHeader" data-bs-parent="#ManageCoursesAccordion">
                             <div className="accordion-body">
-
+                            <ModifyCourse/>
                             </div>
                         </div>
                     </div>
@@ -150,6 +149,110 @@ function ManageCourses(){
         <>
         </>
     );
+}
+
+
+
+function ManageSems({courseid}){
+
+
+
+
+    if(courseid && courseid !== "null" && courseid !== "undefined" && courseid!==""){
+
+        console.log(courseid)
+        let db = getDatabase();
+        const dbRef = ref(db, 'courses/active/'+courseid);
+        onValue(dbRef, (snapshot) => {
+            console.log(snapshot.val());
+        });
+
+        return(
+            
+            <div className="container">
+            {courseid}
+            <div className="container">
+                
+            </div>
+            <button onClick={()=>{
+                document.getElementById("courseselectorbtn").classList.remove(`disabled`);
+            }}className="btn btn-primary">Save</button>
+            </div>
+        );
+    }
+    else{
+
+        return(
+            <>
+            </>
+        );
+    }
+
+}
+
+function ModifyCourse(){
+
+    let[data,setData]=useState(undefined);
+    let[courseid,setcourseid]=useState("");
+
+    useEffect(() => {
+        fetchallcourses();
+    },
+    []);
+
+    function fetchallcourses(){
+        let db = getDatabase();
+        const dbRef = ref(db, 'courses/active');
+
+        onValue(dbRef, (snapshot) => {
+            setData(snapshot.val());
+        });
+    }
+ 
+    if(data && data !== "null" && data !== "undefined"){
+        var coursedata = Object.keys(data).map((key) => [key, data[key]]);
+        return(
+        <>
+            <div className="container" id="courseselector">
+            <div className="row">
+                <div className="col-md-8 bg-dark p-2">
+                    <div className="input-group  ">
+                        <label className="input-group-text" htmlFor="degreetype">Select Course</label>
+                        <select defaultValue={''} className="form-select" id="coursetomodify">
+                        {
+                            coursedata.map((item)=>(
+                                    <option  key= {item[0]} value={item[0]}>{item[0]+` : `+ item[1].name}</option>
+                            ))
+                        }
+                        </select>
+                    </div>
+                </div>
+                <div className="col-md-4 bg-info p-2">
+                    <div className="container text-center">
+                        <button onClick={()=>{
+                            document.getElementById("courseselectorbtn").classList.add(`disabled`);
+                            setcourseid(document.getElementById("coursetomodify").value)
+                        }} id="courseselectorbtn" className="btn btn-primary btn">Modify Course</button>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+            <ManageSems courseid={courseid}/>
+        </>
+        );
+    }
+    else
+    return(
+        <div className="h6 mt-3">
+        No Courses to Modify
+        </div>
+    );
+
+
+
+
+
 }
 
 function addCourse(){
@@ -205,10 +308,19 @@ function addCourse(){
     courseid=courseid+`\\`+ new Date().getFullYear();
     let coursename= degreetype + ` in ` + degreedomain + ` (`  + major + `)`; 
 
+    function generatesems(semesters){
+        let sems={};
+        for(let i=0; i<semesters;i++){
+            sems[`sem`+(i+1)]={
+                subjects:0
+            };
+        }
+        return sems;
+    }
+
     let currentcourses=[];
     let db=ref(getDatabase(app));
     get(child(db, `courses/active`)).then((snapshot) => {
-        if (snapshot.exists()) { 
             currentcourses=Object.keys(snapshot.val());
             let flag=0;
             currentcourses.forEach(element => {
@@ -218,19 +330,18 @@ function addCourse(){
             });
             if(flag===0){
                 let db=(getDatabase(app));
+                let sems=generatesems(semesters);
                 set(ref(db, 'courses/active/'+courseid), {
-                  name: coursename,
-                  totalsem: semesters
+                    name:coursename,
+                    totalsem:semesters,
+                    sems
                 });
                 showModal(`New Course is created `, `Add Details to the course by Modifying the course`);
-              //   CurrentCoursesTable.fetchallcourses();
             }
             else{
                 showModal(`Course can not be created `, `Delete the course with Id: ${courseid} and then try`);
             }
-        } else {
-        console.log("No data available");
-        }
+    
     }).catch((error) => {
         console.error(error);
     });
@@ -258,14 +369,9 @@ function CurrentCoursesTable(){
         });
     }
 
-    if(data===undefined){
-        return(
-            <>
-            </>
-        );
-    }
 
-    else{
+    if(data && data !== "null" && data !== "undefined"){
+        
         var formdata = Object.keys(data).map((key) => [key, data[key]]);
         return(
             <>
@@ -282,19 +388,25 @@ function CurrentCoursesTable(){
                 </thead>
                 <tbody>
                     {
-                        // console.log(formdata),
+
                         formdata.map((item)=>(
                                 <tr key={item[0]} >
                                 <td>{item[0]}</td>
                                 <td>{item[1].name}</td>
                                 <td>{item[1].totalsem}</td>
                                 </tr>
-                                // console.log(item[0])
                         ))
                     }
                 </tbody>
             </table>
             </>
+        );
+    }
+    else{
+        return(
+            <div className="h6 mt-3">
+            No Courses are currently available
+            </div>
         );
     }
 }
@@ -318,14 +430,7 @@ function DeleteCoursesTable(){
         });
     }
 
-    if(data===undefined){
-        return(
-            <>
-            </>
-        );
-    }
-
-    else{
+    if(data && data !== "null" && data !== "undefined"){
         var formdata = Object.keys(data).map((key) => [key, data[key]]);
         return(
             <>
@@ -343,14 +448,13 @@ function DeleteCoursesTable(){
                 </thead>
                 <tbody>
                     {
-                        // console.log(formdata),
                         formdata.map((item)=>(
-                                <tr key={item[0]} >
+                                <tr  key={item[0]} >
                                 <td>{item[0]}</td>
                                 <td>{item[1].name}</td>
                                 <td>{item[1].totalsem}</td>
                                 <td>
-                                    <button className="btn btn-sm btn-danger">
+                                    <button onClick={()=>{deleteCourse(item[0]);}} className="btn btn-sm btn-danger">
                                         Delete
                                     </button>
                                 </td>
@@ -362,6 +466,22 @@ function DeleteCoursesTable(){
             </>
         );
     }
+    else{
+        return(
+            <div className="h6 mt-3">
+                No Current Courses
+            </div>
+        );
+    }
 }
 
+function deleteCourse(courseid){
+    const db = getDatabase();
+    remove(ref(db, 'courses/active/' + courseid), )
+    .then(() => {
+    showModal(`Course Deleted Succesfully`, `Course Deleted Succesfully`);
+    })
+    .catch((error) => {
+    });
+}
 export { ManageCourses};

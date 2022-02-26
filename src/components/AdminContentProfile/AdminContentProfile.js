@@ -29,8 +29,10 @@ function AdminContentProfile(){
                                 <div className="card-text mx-2 my-3">
                                     <ul>
                                         <li className="h5">Add New Batch</li>
-                                        <li className="h5">Show List of existing Batches</li>
-                                        <li className="h5">Modify Batch</li>
+                                        <li className="h5">Assign Teachers</li>
+                                        <li className="h5">Change Sem</li>
+                                        <li className="h5">Assign Students</li>
+
                                     </ul>                             
                                  </div>
                             </div>

@@ -1,4 +1,4 @@
-
+import "./MainModal.css"
 
 function MainModal(){
 return(
