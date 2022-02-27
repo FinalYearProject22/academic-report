@@ -45,7 +45,6 @@ function AdminContentProfile(){
                                     <ul>
                                         <li className="h5">Add New Student</li>
                                         <li className="h5">Migrate Student</li>
-                                        <li className="h5">Remove Student</li>
                                         <li className="h5">Modify Student Details</li>
                                     </ul>                             
                                  </div>

@@ -76,23 +76,11 @@ function ManageStudents(){
                     <div className="accordion-item mb-5">
                         <h2 className="accordion-header" id="flush-headingThree">
                         <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            Remove Student
+                            Modify Student Details
                         </button>
                         </h2>
                         <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                             <div className="accordion-body">
-                            </div>
-                        </div>
-                    </div>
-                    <div className="accordion-item">
-                        <h2 className="accordion-header" id="flush-headingfour">
-                        <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
-                            Modify Student Details
-                        </button>
-                        </h2>
-                        <div id="flush-collapsefour" className="accordion-collapse collapse" aria-labelledby="flush-headingfour" data-bs-parent="#accordionFlushExample">
-                            <div className="accordion-body">
-
                             </div>
                         </div>
                     </div>
