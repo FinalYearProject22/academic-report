@@ -5,7 +5,7 @@ function BackButton(){
 
     let navigate=useNavigate();
     function Back(){
-            navigate('/Profile');
+            navigate('/Profile',{replace:true});
     }
 
 

@@ -1,6 +1,6 @@
 
 import { getAuth,onAuthStateChanged} from "firebase/auth";
-import { getDatabase , ref, child, get} from "firebase/database";
+import { getDatabase , ref, child, get,set} from "firebase/database";
 import {app} from "../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
@@ -53,11 +53,41 @@ function ProfileContent(){
                 <TeacherContentProfile/>
             </>
         ); 
-    else
+    else{const auth = getAuth();
+        const user = auth.currentUser;
+        // console.log(user.uid,user.email)
+        let uid = user.uid;
+        let email=user.email.split ("@");
+        let db=ref(getDatabase(app));
+        get(child(db, `users/${uid}/`)).then((snapshot) => {
+            if(snapshot.val()===null){
+             get(child(db, `unassingedusers/${email[0]}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val());
+                } else {
+                console.log("No data available");
+                let db=(getDatabase(app));
+                set(ref(db, `unassingedusers/${email[0]}/`), {
+                    domain:`@`+email[1],
+                    uid:uid
+                });
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
+            }else{
+
+            }
+
+        }).catch((error) => {
+            console.error(error);
+        });
         return(
-            <>
-            </>
+            <div className="h3 my-5 text-center">
+            Ask Admin to assign you a role
+            </div>
         );
+    }
 }
 
 

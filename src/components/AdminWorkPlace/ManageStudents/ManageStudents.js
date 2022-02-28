@@ -1,12 +1,14 @@
 import './ManageStudents.css';
 import { BackButton } from "../../BackButton/BackButton";
 import { getAuth,onAuthStateChanged,createUserWithEmailAndPassword} from "firebase/auth";
-import { getDatabase , ref, child, get} from "firebase/database";
-import {app,app2} from "../../../Firebase/firebase";
+import { getDatabase , ref, child, get,set, remove} from "firebase/database";
+import {app} from "../../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { showModal } from '../../MainModal/MainModal';
+import { StudentContentProfile } from '../../StudentContentProfile/StudentContentProfile';
+
 
 
 
@@ -65,12 +67,13 @@ function ManageStudents(){
                                     <div className="row">
                                         <div className="col-md-6  p-2">
                                             <div className="input-group  ">
-                                            <input id="studentroll" type="number" className="form-control" placeholder="Roll Number" aria-label="Roll Number"></input>
+                                            <input id="studentemail" type="email" className="form-control" placeholder="Registered Student Email" aria-label="Student Email"></input>
+
                                             </div>
                                         </div>
                                         <div className="col-md-6 p-2">
                                         <div className="input-group ">
-                                             <input id="studentemail" type="email" className="form-control" placeholder="Student Email" aria-label="Student Email"></input>
+                                        <input id="studentroll" type="number" className="form-control" placeholder="Roll Number" aria-label="Roll Number"></input>
                                         </div>
                                         </div>
                                     </div>
@@ -164,6 +167,7 @@ function ManageStudents(){
 
 function addStudent(sroll,semail,sname,sdept){
     console.log(`${sroll} ${semail} ${sname} ${sdept}`)
+    let email=semail.split ("@");
     let db=ref(getDatabase(app));
     get(child(db, `students/active/`)).then((snapshot) => {
         let flag=0;
@@ -177,29 +181,45 @@ function addStudent(sroll,semail,sname,sdept){
             showModal(`Student Cannot Be Added`,`Student with roll: ${sroll} already exists`);
         }
         else{
-            let password=Math.floor((Math.random() * 1000000) + 100000);
-            console.log(password)
-            const auth = getAuth();
-            console.log(auth.currentUser)
-            // createUserWithEmailAndPassword(auth,semail, password)
-            // .then((userCredential) => {
-            //     const user = userCredential.user;
-            //     console.log(user)
-            // })
-            // .catch((error) => {
-            //     const errorCode = error.code;
-            //     const errorMessage = error.message;
-            //     // ..
-            // });
-            app2.auth().createUserWithEmailAndPassword(semail, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user)
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
+            get(child(db, `unassingedusers/`)).then((snapshot) => {
+                for (const key in snapshot.val()) {
+                    console.log(key)
+                    if(email[0]===key){
+                        flag=1;
+                    }
+                }
+                if(flag===0){
+                    showModal(`Student Cannot Be Added`,`${semail} is not linked to any PENDING account`);
+                }
+                else{
+                    
+
+                    get(child(db, `unassingedusers/${email[0]}`)).then((snapshot) => {
+                        console.log(snapshot.val().uid)
+                        let db=(getDatabase(app));
+                        set(ref(db, `users/${snapshot.val().uid}/`), {
+                            role:`student`,
+                            uid:snapshot.val().uid,
+                            name:sname,
+                            dept:sdept,
+                            roll:sroll
+
+                        });
+                        set(ref(db, `students/${sroll}/`), {
+                            uid:snapshot.val().uid,
+                        });
+                        remove(ref(db,`unassingedusers/${email[0]}`));
+
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+
+
+                    console.log(`hello`)
+                }
+
+            }).catch((error) => {
+                console.error(error);
             });
         }
     }).catch((error) => {
