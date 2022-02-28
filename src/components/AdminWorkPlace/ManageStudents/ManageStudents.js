@@ -1,11 +1,12 @@
 import './ManageStudents.css';
 import { BackButton } from "../../BackButton/BackButton";
-import { getAuth,onAuthStateChanged} from "firebase/auth";
+import { getAuth,onAuthStateChanged,createUserWithEmailAndPassword} from "firebase/auth";
 import { getDatabase , ref, child, get} from "firebase/database";
-import {app} from "../../../Firebase/firebase";
+import {app,app2} from "../../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { showModal } from '../../MainModal/MainModal';
 
 
 
@@ -48,38 +49,101 @@ function ManageStudents(){
                 </div>
             </div>
             <div className="container-fluid p-3 px-5">
-                <div className="accordion accordion-flush" id="accordionFlushExample">
+                <div className="accordion accordion-flush" id="ManageStudentAccordion">
                     <div className="accordion-item mb-5">
-                        <h2 className="accordion-header" id="flush-headingOne">
-                            <button className="accordion-button rounded-3 collapsed text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <h2 className="accordion-header" id="NewStudentHeader">
+                            <button className="accordion-button rounded-3 collapsed text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#NewStudentBody" aria-expanded="false" aria-controls="NewStudentBody">
                                 Add New Student
                             </button>
                         </h2>
-                        <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div id="NewStudentBody" className="accordion-collapse collapse" aria-labelledby="NewStudentHeader" data-bs-parent="#ManageStudentAccordion">
                             <div className="accordion-body">
-
+                            <form className="container">
+                                <div className="my-3 mx-3 h5 text-success">
+                                    Add Student Details
+                                </div>
+                                    <div className="row">
+                                        <div className="col-md-6  p-2">
+                                            <div className="input-group  ">
+                                            <input id="studentroll" type="number" className="form-control" placeholder="Roll Number" aria-label="Roll Number"></input>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 p-2">
+                                        <div className="input-group ">
+                                             <input id="studentemail" type="email" className="form-control" placeholder="Student Email" aria-label="Student Email"></input>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6  p-2">
+                                            <div className="input-group  ">
+                                            <input id="studentname" type="text" className="form-control" placeholder="Student Name" aria-label="Student Name"></input>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6 p-2">
+                                        <div className="input-group ">
+                                                <label className="input-group-text" htmlFor="studentdept">Student Department</label>
+                                                <select defaultValue={"Information Technology"} className="form-select" id="studentdept">
+                                                <option value="Information Technology">Information Technology</option>
+                                                    <option value="Computer Science">Computer Science</option>
+                                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                                    <option value="Electrical & Communication Engineering">Electrical & Communication Engineering</option>
+                                                    <option value="Applied Electronics">Applied Electronics</option>
+                                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="container text-center mt-3">
+                                        <button onClick={()=>{
+                                            addStudent(document.getElementById("studentroll").value,document.getElementById("studentemail").value,document.getElementById("studentname").value,document.getElementById("studentdept").value)
+                                        }} className="btn btn-primary btn-lg">Add Student</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                     <div className="accordion-item mb-5">
-                        <h2 className="accordion-header" id="flush-headingTwo">
-                        <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <h2 className="accordion-header" id="MigrateStudentHeader">
+                        <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#MigrateStudentBody" aria-expanded="false" aria-controls="MigrateStudentBody">
                             Migrate Student
                         </button>
                         </h2>
-                        <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div id="MigrateStudentBody" className="accordion-collapse collapse" aria-labelledby="MigrateStudentHeader" data-bs-parent="#ManageStudentAccordion">
                             <div className="accordion-body">
 
                             </div>
                         </div>
                     </div>
                     <div className="accordion-item mb-5">
-                        <h2 className="accordion-header" id="flush-headingThree">
-                        <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <h2 className="accordion-header" id="StudentDetailsHeader">
+                        <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#StudentDetailsBody" aria-expanded="false" aria-controls="StudentDetailsBody">
+                            Student Details
+                        </button>
+                        </h2>
+                        <div id="StudentDetailsBody" className="accordion-collapse collapse" aria-labelledby="StudentDetailsHeader" data-bs-parent="#ManageStudentAccordion">
+                            <div className="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+                    <div className="accordion-item mb-5">
+                        <h2 className="accordion-header" id="ModifyStudentHeader">
+                        <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#ModifyStudentBody" aria-expanded="false" aria-controls="ModifyStudentBody">
                             Modify Student Details
                         </button>
                         </h2>
-                        <div id="flush-collapseThree" className="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div id="ModifyStudentBody" className="accordion-collapse collapse" aria-labelledby="ModifyStudentHeader" data-bs-parent="#ManageStudentAccordion">
+                            <div className="accordion-body">
+                            </div>
+                        </div>
+                    </div>
+                    <div className="accordion-item mb-5">
+                        <h2 className="accordion-header" id="RemoveStudentHeader">
+                        <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#RemoveStudentBody" aria-expanded="false" aria-controls="RemoveStudentBody">
+                            Remove Student
+                        </button>
+                        </h2>
+                        <div id="RemoveStudentBody" className="accordion-collapse collapse" aria-labelledby="RemoveStudentHeader" data-bs-parent="#ManageStudentAccordion">
                             <div className="accordion-body">
                             </div>
                         </div>
@@ -95,6 +159,52 @@ function ManageStudents(){
         <>
         </>
     );
+}
+
+
+function addStudent(sroll,semail,sname,sdept){
+    console.log(`${sroll} ${semail} ${sname} ${sdept}`)
+    let db=ref(getDatabase(app));
+    get(child(db, `students/active/`)).then((snapshot) => {
+        let flag=0;
+        for (const key in snapshot.val()) {
+            console.log(key)
+            if(sroll===key){
+                flag=1;
+            }
+        }
+        if(flag===1){
+            showModal(`Student Cannot Be Added`,`Student with roll: ${sroll} already exists`);
+        }
+        else{
+            let password=Math.floor((Math.random() * 1000000) + 100000);
+            console.log(password)
+            const auth = getAuth();
+            console.log(auth.currentUser)
+            // createUserWithEmailAndPassword(auth,semail, password)
+            // .then((userCredential) => {
+            //     const user = userCredential.user;
+            //     console.log(user)
+            // })
+            // .catch((error) => {
+            //     const errorCode = error.code;
+            //     const errorMessage = error.message;
+            //     // ..
+            // });
+            app2.auth().createUserWithEmailAndPassword(semail, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
+        }
+    }).catch((error) => {
+        console.error(error);
+    });
 }
 
 export { ManageStudents };
