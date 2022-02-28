@@ -14,3 +14,9 @@
     font-weight: bold;
     transition: all 0.75s;
   }
+  #modifycontainer{
+      display: none;
+  }
+  #deletecontainer{
+    display: none;
+  }

@@ -1,8 +1,9 @@
 import './Login.css';
 
 import React, { useEffect } from 'react'
-import { getAuth,onAuthStateChanged, signInWithEmailAndPassword ,setPersistence,browserSessionPersistence,sendPasswordResetEmail} from "firebase/auth";
+import { getAuth,onAuthStateChanged, createUserWithEmailAndPassword,signInWithEmailAndPassword ,setPersistence,browserSessionPersistence,sendPasswordResetEmail, signInWithPopup} from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { showModal } from '../MainModal/MainModal'
 
 
 function Login() {
@@ -16,7 +17,6 @@ function Login() {
     const auth=getAuth();
     onAuthStateChanged(auth, (user)=>{
        if(user){
-           console.log(user.uid);
            navigate('/Profile');
        }
        else{
@@ -35,9 +35,6 @@ function Login() {
     .then(() => {
       signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user.uid);
-          togglespinner(false);
           navigate('/Profile',{replace:true});
 
       })
@@ -64,6 +61,23 @@ function Login() {
 
   }
 
+
+  function signup(email,password){
+    const auth=getAuth();
+    togglespinnersignup(true)
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      togglespinnersignup(false)
+    })
+    .catch((error) => {
+      togglespinnersignup(false)
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      showModal(`Can not create the user because:`,errorCode);
+
+      // ..
+    });
+  }
     return (
       <>
         <section id="loginform" className="container mt-5 mb-5 pb-5 mx-auto">
@@ -90,6 +104,33 @@ function Login() {
               </div>
             </div>
           </div>
+
+
+          <div className="container mt-5">
+            <div className="row d-flex justify-content-center align-items-center ">
+              <div className=" border border-2 rounded-3 border-light container col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form className="container justify-content-center mb-5 mt-5 h-100">
+                    <h3 className="justify-content-center fw-normal mb-3 pb-3">Sign Up</h3>
+                  <div className="form-outline mb-4">
+                    <input type="email" name="email" id="emailsignup" className="form-control form-control-lg" placeholder='Email Address'/>
+                  </div>
+                  <div className="form-outline mb-4">
+                    <input type="password" id="passwordsignup" className="form-control form-control-lg" placeholder='Password'/>
+                  </div>
+                  <button  id="submitbtnsignup" onClick={()=>{
+                    signup(document.getElementById("emailsignup").value,document.getElementById("passwordsignup").value)
+                  }} type="button" className="btn btn-primary btn-lg ">Sign Up</button>
+                </form>
+              </div>
+              <div className="container col-md-9 col-lg-6 col-xl-5">
+                <img src="https://firebasestorage.googleapis.com/v0/b/finalyearproject22-6db2e.appspot.com/o/Assets%2Fcollege.png?alt=media&token=7e89432f-5f1b-42a2-bfc0-1abad6e26e74" className="img-fluid"
+                  alt="Sample"/>
+              </div>
+            </div>
+          </div>
+
+
+
           <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
               <div className="modal-content">
@@ -160,7 +201,15 @@ function togglespinner(ans){
 
 
 
-
+function togglespinnersignup(ans){
+  if(ans===true){
+  document.getElementById("submitbtnsignup").innerHTML=`
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  `+document.getElementById("submitbtnsignup").innerHTML;
+  }else{
+    document.getElementById("submitbtnsignup").innerHTML=`Sign Up`
+  }
+}
 
 
 

@@ -9,13 +9,13 @@ import { useNavigate } from 'react-router-dom';
 
 function ProfileCard(){
     let navigate=useNavigate();
+    
     useEffect(() => {
          activateloadingscreen(`Fetching your Profile...`); 
          const auth=getAuth();
          onAuthStateChanged(auth, (user)=>{
             if(user){
                 deactivateloadingscreen();
-                // console.log("2");
                 role(user.uid,user.email);
             }
             else{
@@ -71,7 +71,7 @@ function role(uid,email){
     activateloadingscreen(`Geting user information...`);
     get(child(db, `users/${uid}`)).then((snapshot) => {
         if (snapshot.exists()) {
-            console.log(snapshot.val());
+
             document.getElementById("user-name").innerHTML=snapshot.val().name;
             document.getElementById("user-dep").innerHTML=snapshot.val().dept;
             if(snapshot.val().role===`admin`)
@@ -80,11 +80,14 @@ function role(uid,email){
                 document.getElementById("user-role").innerHTML=`Student`;
             else
                 document.getElementById("user-role").innerHTML=`Teacher`;
-            document.getElementById("user-id").innerHTML=snapshot.val().rollno;
+            document.getElementById("user-id").innerHTML=snapshot.val().roll;
             document.getElementById("user-email").innerHTML=email;
             deactivateloadingscreen();
         } else {
         console.log("No data available");
+        document.getElementById("user-email").innerHTML=email;
+        deactivateloadingscreen();
+
         }
     }).catch((error) => {
         console.error(error);

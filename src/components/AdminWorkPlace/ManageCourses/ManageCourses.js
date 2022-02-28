@@ -501,26 +501,39 @@ function addCourse(){
     let currentcourses=[];
     let db=ref(getDatabase(app));
     get(child(db, `courses/active`)).then((snapshot) => {
-            currentcourses=Object.keys(snapshot.val());
-            let flag=0;
-            currentcourses.forEach(element => {
-                if(element===courseid)
-                    flag=1;
- 
+        console.log(snapshot.val())
+        if(snapshot.val()===null){
+            let db=(getDatabase(app));
+            let sems=generatesems(semesters);
+            set(ref(db, 'courses/active/'+courseid), {
+                name:coursename,
+                totalsem:semesters,
+                sems
             });
-            if(flag===0){
-                let db=(getDatabase(app));
-                let sems=generatesems(semesters);
-                set(ref(db, 'courses/active/'+courseid), {
-                    name:coursename,
-                    totalsem:semesters,
-                    sems
+            showModal(`New Course is created `, `Add Details to the course by Modifying the course`);
+
+        }else{
+                currentcourses=Object.keys(snapshot.val());
+                let flag=0;
+                currentcourses.forEach(element => {
+                    if(element===courseid)
+                        flag=1;
+    
                 });
-                showModal(`New Course is created `, `Add Details to the course by Modifying the course`);
-            }
-            else{
-                showModal(`Course can not be created `, `Delete the course with Id: ${courseid} and then try`);
-            }
+                if(flag===0){
+                    let db=(getDatabase(app));
+                    let sems=generatesems(semesters);
+                    set(ref(db, 'courses/active/'+courseid), {
+                        name:coursename,
+                        totalsem:semesters,
+                        sems
+                    });
+                    showModal(`New Course is created `, `Add Details to the course by Modifying the course`);
+                }
+                else{
+                    showModal(`Course can not be created `, `Delete the course with Id: ${courseid} and then try`);
+                }
+        }
     
     }).catch((error) => {
         console.error(error);

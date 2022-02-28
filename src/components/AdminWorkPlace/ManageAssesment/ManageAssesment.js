@@ -23,7 +23,6 @@ function ManageAssesment(){
             get(child(db, `users/${uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     setRole(snapshot.val().role);
-                    console.log(snapshot.val().role);
                     deactivateloadingscreen();
                 } else {
                 console.log("No data available");
@@ -33,7 +32,6 @@ function ManageAssesment(){
             });
             get(child(db, `Assesments`)).then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log(snapshot.val());
                     if(snapshot.val().CA.ca1===true)
                         document.getElementById("ca1").checked="true";
                     else if (snapshot.val().CA.ca2===true)
