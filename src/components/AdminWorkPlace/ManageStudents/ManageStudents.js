@@ -27,7 +27,7 @@ function ManageStudents(){
             get(child(db, `users/${uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     setRole(snapshot.val().role);
-                    console.log(snapshot.val().role);
+
                 } else {
                 console.log("No data available");
                 }
@@ -313,13 +313,13 @@ function ManageStudents(){
 function Deleteform(roll){
     let db=ref(getDatabase(app));
     get(child(db, `students/${roll}/`)).then((snapshot) => {
-        console.log(snapshot.val())
+
         if(snapshot.val()===null){
             showModal(`Student not found`,`No Student with roll: ${roll} exists`)
         }
         else{
             get(child(db, `users/${snapshot.val().uid}/`)).then((snapshot) => {
-                console.log(snapshot.val())
+
                 document.getElementById("deletestudentemail").value=snapshot.val().email;
                 document.getElementById("deletestudentroll").value=snapshot.val().roll;
                 document.getElementById("deletestudentname").value=snapshot.val().name;
