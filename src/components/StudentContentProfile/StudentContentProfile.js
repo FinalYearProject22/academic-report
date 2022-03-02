@@ -3,7 +3,7 @@
 function StudentContentProfile(){
     return(
         <>
-            
+            I am a student
         </>
     );
 }

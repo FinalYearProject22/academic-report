@@ -36,6 +36,7 @@ function AdminContentProfile(){
                                     </ul>                             
                                  </div>
                             </div>
+                            <Link  to="ManageBatches" className="stretched-link"></Link>
                         </div>
                         <div className="card border-0 col-lg-4 text-white">
                             <img className="card-img img-fluid rounded-3 " src="https://firebasestorage.googleapis.com/v0/b/finalyearproject22-6db2e.appspot.com/o/Assets%2FAdminbg3.jpg?alt=media&token=9896e7ec-0a9c-430b-89e5-46f50c7aab8f" alt="Card"></img>
@@ -44,8 +45,11 @@ function AdminContentProfile(){
                                 <div className="card-text mx-2 my-3">
                                     <ul>
                                         <li className="h5">Add New Student</li>
-                                        <li className="h5">Migrate Student</li>
+                                        {/* <li className="h5">Migrate Student</li> */}
+                                        <li className="h5">Student Details</li>
                                         <li className="h5">Modify Student Details</li>
+                                        <li className="h5">Remove Student</li>
+
                                     </ul>                             
                                  </div>
                             </div>
@@ -57,11 +61,14 @@ function AdminContentProfile(){
                                 <h5 className="card-title mx-2 h1">Manage Teachers</h5>
                                 <div className="card-text mx-2 my-3">
                                     <ul>
-                                        <li className="h5">Add New Teachers</li>
-                                        <li className="h5">Remove Teachers</li>
+                                        <li className="h5">Add New Teacher</li>
+                                        <li className="h5">Teacher Details</li>
+                                        <li className="h5">Modify Teacher Details</li>
+                                        <li className="h5">Remove Teacher</li>
                                     </ul>                             
                                  </div>
                             </div>
+                            <Link  to="ManageTeachers" className="stretched-link"></Link>
                         </div>
                         <div className="card border-0 col-lg-4 text-white">
                             <img className="card-img img-fluid rounded-3 " src="https://firebasestorage.googleapis.com/v0/b/finalyearproject22-6db2e.appspot.com/o/Assets%2FAdminbg5.jpg?alt=media&token=9ceb2a11-a3c2-4482-8a78-5bc4e36b6830" alt="Card"></img>

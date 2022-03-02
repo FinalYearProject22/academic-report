@@ -191,7 +191,8 @@ function ManageSems({courseid}){
                             set(ref(db, `courses/active/`+courseid+`/sems/`+semname+`/subs/`+subjectcode+`/`), {
                                 name:subjectname,
                                 type:subjecttype,
-                                credits:subjectcredit
+                                credits:subjectcredit,
+                                teacher:''
                             });
                             showModal(`New Subject is Added`, `${subjectname} Added`);
                     }
@@ -207,7 +208,8 @@ function ManageSems({courseid}){
                             set(ref(db, `courses/active/`+courseid+`/sems/`+semname+`/subs/`+subjectcode+`/`), {
                                 name:subjectname,
                                 type:subjecttype,
-                                credits:subjectcredit
+                                credits:subjectcredit,
+                                teacher:''
                             });
                             showModal(`New Subject is Added`, `${subjectname} Added`);
                         }
@@ -484,7 +486,7 @@ function addCourse(){
             courseid=courseid+``;
     }
 
-    courseid=courseid+`\\`+ new Date().getFullYear();
+    courseid=courseid+`\\`+new Date().getFullYear();
     let coursename= degreetype + ` in ` + degreedomain + ` (`  + major + `)`; 
 
     function generatesems(semesters){
@@ -677,4 +679,5 @@ function deleteCourse(courseid){
     .catch((error) => {
     });
 }
+
 export { ManageCourses};
