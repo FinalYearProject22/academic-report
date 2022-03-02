@@ -106,7 +106,7 @@ function ManageStudents(){
                             </div>
                         </div>
                     </div>
-                    <div className="accordion-item mb-5">
+                    {/* <div className="accordion-item mb-5">
                         <h2 className="accordion-header" id="MigrateStudentHeader">
                         <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#MigrateStudentBody" aria-expanded="false" aria-controls="MigrateStudentBody">
                             Migrate Student
@@ -117,7 +117,7 @@ function ManageStudents(){
 
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="accordion-item mb-5">
                         <h2 className="accordion-header" id="StudentDetailsHeader">
                         <button className="accordion-button collapsed rounded-3 text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#StudentDetailsBody" aria-expanded="false" aria-controls="StudentDetailsBody">
@@ -282,7 +282,7 @@ function ManageStudents(){
                                         </div>
                                         <div className="col-md-6 p-2">
                                         <div className="input-group ">
-                                            <label className="input-group-text" htmlFor="deletestudentdept">Student Name</label>
+                                            <label className="input-group-text" htmlFor="deletestudentdept">Student Department</label>
                                             <input id="deletestudentdept" disabled={true} type="text" className="form-control" placeholder="Student Department" aria-label="Student Department"></input>
                                         </div>
                                         </div>
@@ -411,7 +411,7 @@ function studentdetails(roll){
                 showModal(`Student Details`,`
                 <div className='row mb-1 ms-3'><span><em>Name:</em> &nbsp;&nbsp;<span >${snapshot.val().name} </span></span></div>
                 <div className='row mb-1 ms-3'><span><em>Department:</em> &nbsp;&nbsp;<span > ${snapshot.val().dept}</span></span></div>
-                <div className='row mb-1 ms-3'><span><em>Id:</em> &nbsp;&nbsp;<span >${snapshot.val().roll} </span></span></div>
+                <div className='row mb-1 ms-3'><span><em>Roll no.:</em> &nbsp;&nbsp;<span >${snapshot.val().roll} </span></span></div>
                 <div className='row mb-1 ms-3'><span><em>Email:</em> &nbsp;&nbsp;<span > ${snapshot.val().email}</span></span></div>
                 `)
 
@@ -428,7 +428,7 @@ function addStudent(sroll,semail,sname,sdept){
     console.log(`${sroll} ${semail} ${sname} ${sdept}`)
     let email=semail.split ("@");
     let db=ref(getDatabase(app));
-    get(child(db, `students/active/`)).then((snapshot) => {
+    get(child(db, `students/`)).then((snapshot) => {
         let flag=0;
         for (const key in snapshot.val()) {
             console.log(key)

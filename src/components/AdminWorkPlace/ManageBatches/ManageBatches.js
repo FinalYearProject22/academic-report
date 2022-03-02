@@ -37,7 +37,7 @@ function ManageBatches(){
     if(role===`admin`)
     return(
         <>
-            Hello
+            Hello Fellashjfghj
         </>
     );
     else if(role===`student` || role===`teacher`)
