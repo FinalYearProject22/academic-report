@@ -341,7 +341,6 @@ function Deletestudent(){
         console.log(snapshot.val().uid)
         let db1=(getDatabase(app));
         remove(ref(db1,`users/${snapshot.val().uid}`));
-        remove(ref(db1,`students/${roll}`));
         document.getElementById("deletecontainer").style.display = "none";
         showModal(``,`Student removed Successfully`);
 
