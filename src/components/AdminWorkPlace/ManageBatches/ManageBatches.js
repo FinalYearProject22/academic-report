@@ -50,7 +50,7 @@ function ManageBatches(){
                     <div className="accordion-item mb-5">
                         <h2 className="accordion-header" id="AddNewBatchHeader">
                             <button className="accordion-button rounded-3 collapsed text-white fs-3 " type="button" data-bs-toggle="collapse" data-bs-target="#AddNewBatchBody" aria-expanded="false" aria-controls="AddNewBatchBody">
-                                Add New Batch (correct remove teacher and student)
+                                Add New Batch
                             </button>
                         </h2>
                         <div id="AddNewBatchBody" className="accordion-collapse collapse" aria-labelledby="AddNewBatchHeader" data-bs-parent="#ManageBatchesAccordion">
