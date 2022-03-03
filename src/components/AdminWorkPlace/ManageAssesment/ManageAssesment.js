@@ -177,7 +177,7 @@ function submitcapa(cp){
     }
     deactivateloadingscreen();
     activateloadingscreen(`Changes Have Been Made`);
-    setTimeout(() => {deactivateloadingscreen()}, 2000);
+    setTimeout(() => {deactivateloadingscreen()}, 1000);
  
 }
 

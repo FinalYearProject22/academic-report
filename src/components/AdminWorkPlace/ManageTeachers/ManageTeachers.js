@@ -1,6 +1,6 @@
 import './ManageTeacher.css';
 import { getAuth,onAuthStateChanged} from "firebase/auth";
-import { getDatabase , ref, child, get,set,remove} from "firebase/database";
+import { getDatabase , ref, child, get,set,remove,update} from "firebase/database";
 import {app} from "../../../Firebase/firebase";
 import { useEffect } from 'react'
 import { useState } from "react";
@@ -299,8 +299,15 @@ function Deleteteacher(){
     let roll=document.getElementById("deleteteacherid").value;
     let db=ref(getDatabase(app));
     get(child(db, `teachers/${roll}/`)).then((snapshot) => {
-        console.log(snapshot.val().uid)
-        let db1=(getDatabase(app));
+        let classes=snapshot.val().classes;
+        const db1 = getDatabase();
+        const updates = {};
+        for (const key in classes) {
+            let temp=key.split("\\")
+            let clas=`${temp[0]}\\${temp[1]}\\${temp[2]}\\${temp[3]}/${temp[4]}/${temp[5]}/${temp[6]}/${temp[7]}`
+            updates[`/batches/${clas}/teacher`] = "";
+        }
+        update(ref(db1), updates);
         remove(ref(db1,`users/${snapshot.val().uid}`));
         remove(ref(db1,`teachers/${roll}`));
         document.getElementById("deleteteachercontainer").style.display = "none";
