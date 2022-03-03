@@ -306,11 +306,10 @@ function Deleteteacher(){
             let temp=key.split("\\")
             let clas=`${temp[0]}\\${temp[1]}\\${temp[2]}\\${temp[3]}/${temp[4]}/${temp[5]}/${temp[6]}/${temp[7]}`
             updates[`/batches/${clas}/teacher`] = "";
-            console.log(clas);
         }
         update(ref(db1), updates);
-        // remove(ref(db1,`users/${snapshot.val().uid}`));
-        // remove(ref(db1,`teachers/${roll}`));
+        remove(ref(db1,`users/${snapshot.val().uid}`));
+        remove(ref(db1,`teachers/${roll}`));
         document.getElementById("deleteteachercontainer").style.display = "none";
         showModal(``,`Teacher removed Successfully`);
 
