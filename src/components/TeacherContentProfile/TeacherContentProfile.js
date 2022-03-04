@@ -72,7 +72,7 @@ function BatchMarks(){
     },
     []);
 
-
+//try with option menu
     function fetchalldata(){
         let db = getDatabase();
         const auth = getAuth();
