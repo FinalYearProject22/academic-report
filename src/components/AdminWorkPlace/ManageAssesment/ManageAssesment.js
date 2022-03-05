@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { BackButton } from "../../BackButton/BackButton";
 import { activateloadingscreen, deactivateloadingscreen } from "../../Loadingscreen/Loadingscreen";
+import { showModal } from '../../MainModal/MainModal';
 
 const auth = getAuth();
 let db=ref(getDatabase(app));
@@ -176,8 +177,7 @@ function submitcapa(cp){
         });
     }
     deactivateloadingscreen();
-    activateloadingscreen(`Changes Have Been Made`);
-    setTimeout(() => {deactivateloadingscreen()}, 1000);
+    showModal(`Chages have been made.`,`Assesment period changed successfully.`);
  
 }
 

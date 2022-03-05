@@ -296,6 +296,7 @@ function ManageSems({courseid}){
                                             }className="btn btn-primary btn-lg">Add Subject</button>
                                 </div>
                             </div>
+                            <div className="table-responsive">
                             <table className="table">
                                 <thead>
                                     <tr>
@@ -334,6 +335,7 @@ function ManageSems({courseid}){
                                 }
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -573,6 +575,7 @@ function CurrentCoursesTable(){
 `                <div className="h4 text-info">
                     Current Courses
                 </div>
+                <div className="table-responsive">
                 <table className="table">
                 <thead>
                     <tr>
@@ -594,6 +597,7 @@ function CurrentCoursesTable(){
                     }
                 </tbody>
             </table>
+            </div>
             </>
         );
     }
@@ -632,6 +636,7 @@ function DeleteCoursesTable(){
 `                <div className="h2 text-info">
                     Current Courses
                 </div>
+                <div className="table-responsive">
                 <table className="table">
                 <thead>
                     <tr>
@@ -658,6 +663,7 @@ function DeleteCoursesTable(){
                     }
                 </tbody>
             </table>
+            </div>
             </>
         );
     }
