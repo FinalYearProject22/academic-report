@@ -14,11 +14,14 @@ function ProfileContent(){
 
 
     const [role, setRole] = useState(undefined);
-    useEffect(() => {
+    useEffect(() => { 
+
+
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
           if (user) {
             const uid = user.uid;
+            console.log(uid);
             let db=ref(getDatabase(app));
             get(child(db, `users/${uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
@@ -33,6 +36,7 @@ function ProfileContent(){
           } else {
           }
         });
+
     },
     []);
     if(role===`admin`)
@@ -53,7 +57,7 @@ function ProfileContent(){
                 <TeacherContentProfile/>
             </>
         ); 
-    else{const auth = getAuth();
+    else if(role===null){const auth = getAuth();
         const user = auth.currentUser;
         // console.log(user.uid,user.email)
         let uid = user.uid;
@@ -86,6 +90,12 @@ function ProfileContent(){
             <div className="h3 my-5 text-center">
             Ask Admin to assign you a role
             </div>
+        );
+    }
+    else{
+        return(
+            <>
+        </>
         );
     }
 }
