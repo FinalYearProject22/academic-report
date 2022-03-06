@@ -125,7 +125,6 @@ function BatchMarks(){
     if(classes && classes !== "null" && classes !== "undefined"){
         
         function insertbatch(){
-            // console.log(data);
             let batchlist=[];
             for (let index = 0; index < subdata.length; index++) {
                 let data=(subdata[index]);
@@ -222,6 +221,7 @@ function AccordionContent({studentmarks,subtype,data}){
             <div className='container my-3 text-success h3'>
                 Enter Marks
             </div>
+            <div className='table-responsive'>
             <table className="table">
                 <thead>
                     <tr>
@@ -249,6 +249,7 @@ function AccordionContent({studentmarks,subtype,data}){
                     }
                 </tbody>
             </table> 
+            </div>
             </div>
             <div className='container my-2 text-center'>
             <button onClick={()=>{

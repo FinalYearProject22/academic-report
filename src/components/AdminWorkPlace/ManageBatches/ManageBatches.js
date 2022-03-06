@@ -218,7 +218,7 @@ function AddTeacher({batchid}){
                     <div className="fs-3 text-success my-2">
                         {data.name}/{currentsem} (Currently Active Semester):
                     </div>
-                    <div className="conatainer">
+                    <div className="table-responsive">
                     <table className="table">
                         <thead>
                             <tr>
@@ -466,7 +466,7 @@ function StudentsInBatch({batchid}){
                          Students Currently in the Batch.
                     </div>
                 </div>
-                <div className="container">
+                <div className="table-responsive">
                 <table className="table">
                 <thead>
                     <tr>
@@ -827,6 +827,7 @@ function CurrentBatchesTable(){
 `                <div className="h4 text-info">
                     Current Batches
                 </div>
+                <div className="table-responsive">
                 <table className="table">
                 <thead>
                     <tr>
@@ -850,6 +851,7 @@ function CurrentBatchesTable(){
                     }
                 </tbody>
             </table>
+            </div>
             </>
         );
     }
