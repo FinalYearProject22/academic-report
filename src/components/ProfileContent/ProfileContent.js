@@ -27,7 +27,8 @@ function ProfileContent(){
                 if (snapshot.exists()) {
                     setRole(snapshot.val().role);
                 } else {
-                console.log("No data available");
+                // console.log("No data available");
+                // setRole(snapshot.val().role);
                 }
             }).catch((error) => {
                 console.error(error);
@@ -57,9 +58,9 @@ function ProfileContent(){
                 <TeacherContentProfile/>
             </>
         ); 
-    else if(role===null){const auth = getAuth();
+    else {const auth = getAuth();
         const user = auth.currentUser;
-        // console.log(user.uid,user.email)
+        console.log(user.uid,user.email)
         let uid = user.uid;
         let email=user.email.split ("@");
         let db=ref(getDatabase(app));
@@ -92,12 +93,7 @@ function ProfileContent(){
             </div>
         );
     }
-    else{
-        return(
-            <>
-        </>
-        );
-    }
+
 }
 
 
