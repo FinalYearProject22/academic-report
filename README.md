@@ -2,14 +2,14 @@
 
 ### *Academic Report Using Cloud*
 
+BY
 
 
-
->Vishal Mundhra
-Taniya Chanda
-Ranjan Yadav
-Rahul Kumar Singh
-Roshan Jha
+###### [Vishal Mundhra](https://www.linkedin.com/in/vishal15mundhra/)
+###### [Taniya Chanda](https://www.linkedin.com/in/taniya-chanda-281b05185/)
+###### [Ranjan Kumar](https://www.linkedin.com/in/ranjan-kumar-599b131b1/)
+###### [Rahul Kumar Singh](https://github.com/Goodwiller)
+###### [Roshan Jha](https://www.linkedin.com/in/roshan-jha-983281213/)
  
 
 A Project to be submitted to MAULANA ABUL KALAM AZAD UNIVERSITY OF TECHNOLOGY in the partial fulfillment of the requirement for the award of the B.TECH degree in INFORMATION TECHNOLOGY.
