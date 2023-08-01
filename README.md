@@ -157,9 +157,16 @@ Users will require:
 - Working internet connection
 - A device for accessing internet
 
-## Login Credentials
-
-
+## Login Credentials (For testing purposes)
+### Admin
+User Name :  iamrahulsingh0801@gmail.com
+Password : Rahul@123
+### Teacher
+User Name :  iamrahul@gmail.com
+Password : Rahul@123
+### Student
+User Name :  iamrahulsingh@gmail.com
+Password : Rahul@123
 
 https://cloudacademy.com/blog/surprising-ways-cloud-computing-is-changing-education/
 https://cloudacademy.com/
