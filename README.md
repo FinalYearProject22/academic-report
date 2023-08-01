@@ -159,16 +159,16 @@ Users will require:
 
 ## Login Credentials (For testing purposes)
 ### Admin
-User Name :  iamrahulsingh0801@gmail.com
-Password : Rahul@123
+- User Name :  iamrahulsingh0801@gmail.com
+- Password : Rahul@123
 ### Teacher
-User Name :  iamrahul@gmail.com
-Password : Rahul@123
+- User Name :  iamrahul@gmail.com
+- Password : Rahul@123
 ### Student
-User Name :  iamrahulsingh@gmail.com
-Password : Rahul@123
+- User Name :  iamrahulsingh@gmail.com
+- Password : Rahul@123
 
-##Refernces
+## Refernces
 https://cloudacademy.com/blog/surprising-ways-cloud-computing-is-changing-education/
 https://cloudacademy.com/
 https://cloudtweaks.com/2014/12/cloud-computing-education-2/
