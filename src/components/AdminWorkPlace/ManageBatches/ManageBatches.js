@@ -136,6 +136,7 @@ function AssignTeachers(){
 
         onValue(dbRef, (snapshot) => {
             let data=snapshot.val();
+            console.log(data)
             for (const key in data) {
                 if(data[key].curr===`Batch Over`)
                     delete data[key];
@@ -148,6 +149,7 @@ function AssignTeachers(){
     if(data && data !== "null" && data !== "undefined" && Object.entries(data).length !== 0){
 
         var coursedata = Object.keys(data).map((key) => [key, data[key]]);
+        console.log(coursedata);
         return(
         <>
             <div className="container" id="courseselector">
@@ -188,6 +190,7 @@ function AssignTeachers(){
 
 
 function AddTeacher({batchid}){
+    console.log(batchid)
     let[data,setData]=useState(undefined);
 
     useEffect(() => {
@@ -205,55 +208,64 @@ function AddTeacher({batchid}){
     }
     if(data && data !== "null" && data !== "undefined"){
         let currentsem=`sem`+data.curr;
-        console.log(currentsem)
+        // console.log(currentsem)
         let currentsemdata1=data[`sems`];
         let currentsemdata2=currentsemdata1[currentsem]
         let currentsemdata=currentsemdata2[`subs`]
         console.log(currentsemdata)
-        var semsubs = Object.keys(currentsemdata).map((key) => [key, currentsemdata[key]]);
-        console.log(semsubs)
-        return(
-            <>
-                <div className="conatianer">
-                    <div className="fs-3 text-success my-2">
-                        {data.name}/{currentsem} (Currently Active Semester):
+        if (currentsemdata && currentsemdata !== "null" && currentsemdata !== "undefined" && Object.entries(currentsemdata).length !== 0) {
+            var semsubs = Object.keys(currentsemdata).map((key) => [key, currentsemdata[key]]);
+            // console.log(semsubs)
+            return(
+                <>
+                    <div className="conatianer">
+                        <div className="fs-3 text-success my-2">
+                            {data.name}/{currentsem} (Currently Active Semester):
+                        </div>
+                        <div className="table-responsive">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Subject Code</th>
+                                <th scope="col">Subject Name</th>
+                                <th scope="col">Subject Type</th>
+                                <th scope="col">Subject Teacher Id</th>
+                                <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+    
+                                    semsubs.map((item)=>(
+                                            <tr key={item[0]} >
+                                            <td className="col-2">{item[0]}</td>
+                                            <td className="col-2">{item[1].name}</td>
+                                            <td className="col-2">{item[1].type}</td>
+                                            <td className="col-3">
+                                            <input id={'teacherid'+item[0]} type="text" defaultValue={item[1].teacher}className="form-control" placeholder="Teacher Id" aria-label="Teacher Id"></input>
+                                            </td>
+                                            <td className="col-2">
+                                            <button onClick={()=>{assignteacher(batchid,currentsem,item[0],document.getElementById('teacherid'+item[0]).value)}} className="btn btn-sm btn-success">
+                                            Change
+                                            </button>
+                                            </td>
+                                            </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                        </div>
                     </div>
-                    <div className="table-responsive">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">Subject Code</th>
-                            <th scope="col">Subject Name</th>
-                            <th scope="col">Subject Type</th>
-                            <th scope="col">Subject Teacher Id</th>
-                            <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
+                </>
+            );
+        } else {
+            showModal(`Could not perform operation....`,`No subjects present in this sem.`);
+            return(                
+                <>
+                </>
+            );
+        }
 
-                                semsubs.map((item)=>(
-                                        <tr key={item[0]} >
-                                        <td className="col-2">{item[0]}</td>
-                                        <td className="col-2">{item[1].name}</td>
-                                        <td className="col-2">{item[1].type}</td>
-                                        <td className="col-3">
-                                        <input id={'teacherid'+item[0]} type="text" defaultValue={item[1].teacher}className="form-control" placeholder="Teacher Id" aria-label="Teacher Id"></input>
-                                        </td>
-                                        <td className="col-2">
-                                        <button onClick={()=>{assignteacher(batchid,currentsem,item[0],document.getElementById('teacherid'+item[0]).value)}} className="btn btn-sm btn-success">
-                                        Change
-                                        </button>
-                                        </td>
-                                        </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
-            </>
-        );
 
     }
     else
@@ -501,7 +513,7 @@ function StudentsInBatch({batchid}){
     else
     return(
         <div className="h6 mt-3 text-center text-danger">
-            There are Students in the Batch Currently.
+            There are No Students in the Batch Currently.
         </div>
     );
 
